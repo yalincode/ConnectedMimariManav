@@ -67,5 +67,20 @@ namespace ConnectedMimariManav
                 selectedKategori.KategoriID = repo.Update(selectedKategori);
             }
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (selectedKategori == null)
+            {
+                return;
+            }
+            else
+            {
+                int id = selectedKategori.KategoriID;
+                repo.Delete(id);
+                this.Close();
+            }
+            
+        }
     }
 }

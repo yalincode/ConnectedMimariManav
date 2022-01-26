@@ -94,7 +94,24 @@ namespace ConnectedMimariManav.Repository
         }
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                SqlCommand command = new SqlCommand("Sp_Kategori_Delete", con);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@KategoriID", id);
+                ConOpen();
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                ConClose();
+            }
+            
         }
         public int Update(Kategori entity)
         {
