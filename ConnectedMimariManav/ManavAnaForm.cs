@@ -22,5 +22,11 @@ namespace ConnectedMimariManav
             KategoriFormu form=new KategoriFormu();
             form.ShowDialog();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MusteriFormu form=new MusteriFormu();
+            form.ShowDialog();
+        }
     }
 }

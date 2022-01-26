@@ -14,7 +14,33 @@ namespace ConnectedMimariManav.Repository
 
         public List<Musteri> GetAll()
         {
-            throw new NotImplementedException();
+            List<Musteri> Musteriler = new List<Musteri>();
+            try
+            {
+                SqlCommand command = new SqlCommand("Sp_MusteriGetir", this.con);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                ConOpen();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Musteri Musteri = new Musteri();
+                    Musteri.MusteriID = Convert.ToInt32(reader["MusteriID"]);
+                    Musteri.MusteriAd = reader["MusteriAd"].ToString();
+                    Musteri.MusteriSoyad = reader["MusteriSoyad"].ToString();
+                    Musteri.MusteriTelefon = reader["MusteriTelefon"].ToString();
+                    Musteri.MusteriAdres = reader["MusteriAdres"].ToString();
+                    Musteriler.Add(Musteri);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                ConClose();
+            }
+            return Musteriler;
         }
 
         public Musteri Get(int id)
@@ -44,12 +70,12 @@ namespace ConnectedMimariManav.Repository
 
         public void ConOpen()
         {
-            throw new NotImplementedException();
+            if (con.State == System.Data.ConnectionState.Closed) con.Open();
         }
 
         public void ConClose()
         {
-            throw new NotImplementedException();
+            if (con.State == System.Data.ConnectionState.Open) con.Close();
         }
     }
 }
