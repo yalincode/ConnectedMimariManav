@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ConnectedMimariManav.Repository
 {
@@ -94,22 +95,25 @@ namespace ConnectedMimariManav.Repository
         }
         public void Delete(int id)
         {
-            try
+            if (MessageBox.Show("Silmek İstediğine Emin misin?", "Silme İşlemi", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                SqlCommand command = new SqlCommand("Sp_Kategori_Delete", con);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@KategoriID", id);
-                ConOpen();
-                command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("Sp_Kategori_Delete", con);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@KategoriID", id);
+                    ConOpen();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
 
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                ConClose();
+                    System.Windows.Forms.MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    ConClose();
+                } 
             }
             
         }

@@ -34,9 +34,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtMusteriAd = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtMusteriTelefon = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtMusteriAdres = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -51,6 +51,7 @@
             this.btnDelete.TabIndex = 14;
             this.btnDelete.Text = "Sil";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnSave
             // 
@@ -63,6 +64,7 @@
             this.btnSave.TabIndex = 13;
             this.btnSave.Text = "Kaydet";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // txtMusteriSoyad
             // 
@@ -100,12 +102,12 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Musteri Adı :";
             // 
-            // textBox1
+            // txtMusteriTelefon
             // 
-            this.textBox1.Location = new System.Drawing.Point(178, 118);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(272, 20);
-            this.textBox1.TabIndex = 16;
+            this.txtMusteriTelefon.Location = new System.Drawing.Point(178, 118);
+            this.txtMusteriTelefon.Name = "txtMusteriTelefon";
+            this.txtMusteriTelefon.Size = new System.Drawing.Size(272, 20);
+            this.txtMusteriTelefon.TabIndex = 16;
             // 
             // label3
             // 
@@ -118,13 +120,13 @@
             this.label3.TabIndex = 15;
             this.label3.Text = "Musteri Telefon :";
             // 
-            // textBox2
+            // txtMusteriAdres
             // 
-            this.textBox2.Location = new System.Drawing.Point(178, 161);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(272, 71);
-            this.textBox2.TabIndex = 18;
+            this.txtMusteriAdres.Location = new System.Drawing.Point(178, 161);
+            this.txtMusteriAdres.Multiline = true;
+            this.txtMusteriAdres.Name = "txtMusteriAdres";
+            this.txtMusteriAdres.Size = new System.Drawing.Size(272, 71);
+            this.txtMusteriAdres.TabIndex = 18;
             // 
             // label4
             // 
@@ -143,9 +145,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SaddleBrown;
             this.ClientSize = new System.Drawing.Size(495, 330);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtMusteriAdres);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtMusteriTelefon);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSave);
@@ -170,9 +172,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtMusteriAd;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtMusteriTelefon;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtMusteriAdres;
         private System.Windows.Forms.Label label4;
     }
 }

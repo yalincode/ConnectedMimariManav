@@ -87,6 +87,12 @@
     <Compile Include="Repository\KategoriRepo.cs" />
     <Compile Include="Repository\MusteriRepo.cs" />
     <Compile Include="Repository\UrunRepo.cs" />
+    <Compile Include="UrunEklemeFormu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UrunEklemeFormu.Designer.cs">
+      <DependentUpon>UrunEklemeFormu.cs</DependentUpon>
+    </Compile>
     <Compile Include="UrunFormu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +124,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UrunEklemeFormu.resx">
+      <DependentUpon>UrunEklemeFormu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UrunFormu.resx">
+      <DependentUpon>UrunFormu.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

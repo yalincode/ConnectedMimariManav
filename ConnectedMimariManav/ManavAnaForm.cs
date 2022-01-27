@@ -28,5 +28,16 @@ namespace ConnectedMimariManav
             MusteriFormu form=new MusteriFormu();
             form.ShowDialog();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            UrunFormu form=new UrunFormu();
+            form.ShowDialog();
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

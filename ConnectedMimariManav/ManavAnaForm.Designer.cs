@@ -102,6 +102,7 @@
             this.button11.TabIndex = 30;
             this.button11.Text = "Çıkış";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // button10
             // 
@@ -199,6 +200,7 @@
             this.button1.TabIndex = 5;
             this.button1.Text = "Ürünler";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel2
             // 

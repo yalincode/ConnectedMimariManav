@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ConnectedMimariManav.Entities;
+using ConnectedMimariManav.Repository;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,43 @@ namespace ConnectedMimariManav
 {
     public partial class UrunFormu : Form
     {
+        UrunRepo repo;
         public UrunFormu()
         {
             InitializeComponent();
+            repo = new UrunRepo();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            UrunEklemeFormu form=new UrunEklemeFormu();
+            form.ShowDialog();
+            FillDataGrid();
+
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex==-1)
+            {
+                return;
+            }
+            var urun=(dataGridView1.DataSource as List<Urun>)[e.RowIndex];
+            
+            UrunEklemeFormu form = new UrunEklemeFormu();
+            form.Tag = urun.UrunID;
+            form.ShowDialog();
+            FillDataGrid();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FillDataGrid();
+        }
+
+        private void FillDataGrid()
+        {
+            dataGridView1.DataSource=repo.GetAll();
         }
     }
 }

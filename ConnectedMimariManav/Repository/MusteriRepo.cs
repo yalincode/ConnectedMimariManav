@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ConnectedMimariManav.Repository
 {
@@ -23,12 +24,7 @@ namespace ConnectedMimariManav.Repository
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    Musteri Musteri = new Musteri();
-                    Musteri.MusteriID = Convert.ToInt32(reader["MusteriID"]);
-                    Musteri.MusteriAd = reader["MusteriAd"].ToString();
-                    Musteri.MusteriSoyad = reader["MusteriSoyad"].ToString();
-                    Musteri.MusteriTelefon = reader["MusteriTelefon"].ToString();
-                    Musteri.MusteriAdres = reader["MusteriAdres"].ToString();
+                    Musteri Musteri = Mapping(reader);
                     Musteriler.Add(Musteri);
                 }
             }
@@ -45,27 +41,120 @@ namespace ConnectedMimariManav.Repository
 
         public Musteri Get(int id)
         {
-            throw new NotImplementedException();
+            Musteri Musteri=null;
+            try
+            {
+                SqlCommand command = new SqlCommand("Sp_MusteriGetir", this.con);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@MusteriID", id);
+                ConOpen();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Musteri = Mapping(reader);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                ConClose();
+            }
+            return Musteri;
         }
 
         public int Update(Musteri entity)
         {
-            throw new NotImplementedException();
+            int id = 0;
+            try
+            {
+                SqlCommand command = new SqlCommand("Sp_Musteri_InsertveUpdate",con);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@MusteriID", entity.MusteriID);
+                command.Parameters.AddWithValue("@MusteriAd", entity.MusteriAd);
+                command.Parameters.AddWithValue("@MusteriSoyad", entity.MusteriSoyad);
+                command.Parameters.AddWithValue("@MusteriTelefon", entity.MusteriTelefon);
+                command.Parameters.AddWithValue("@MusteriAdres", entity.MusteriAdres);
+                ConOpen();
+                id = Convert.ToInt32(command.ExecuteScalar());
+
+            }
+            catch (Exception ex)
+            {
+
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                ConClose();
+            }
+            return id;
         }
 
         public int Create(Musteri entity)
         {
-            throw new NotImplementedException();
+            int id = 0;
+            try
+            {
+                SqlCommand command = new SqlCommand("Sp_Musteri_InsertveUpdate",con);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@MusteriID", entity.MusteriID);
+                command.Parameters.AddWithValue("@MusteriAd", entity.MusteriAd);
+                command.Parameters.AddWithValue("@MusteriSoyad", entity.MusteriSoyad);
+                command.Parameters.AddWithValue("@MusteriTelefon", entity.MusteriTelefon);
+                command.Parameters.AddWithValue("@MusteriAdres", entity.MusteriAdres);
+                ConOpen();
+                id=Convert.ToInt32(command.ExecuteScalar());
+
+            }
+            catch (Exception ex)
+            {
+
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                ConClose();
+            }
+            return id;
+
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            if (MessageBox.Show("Silmek İstediğine Emin misin?", "Silme İşlemi", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("Sp_Musteri_Delete", con);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@MusteriID", id);
+                    ConOpen();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+
+                    System.Windows.Forms.MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    ConClose();
+                } 
+            }
         }
 
         public Musteri Mapping(SqlDataReader reader)
         {
-            throw new NotImplementedException();
+            Musteri Musteri = new Musteri();
+            Musteri.MusteriID = Convert.ToInt32(reader["MusteriID"]);
+            Musteri.MusteriAd = reader["MusteriAd"].ToString();
+            Musteri.MusteriSoyad = reader["MusteriSoyad"].ToString();
+            Musteri.MusteriTelefon = reader["MusteriTelefon"].ToString();
+            Musteri.MusteriAdres = reader["MusteriAdres"].ToString();
+            return Musteri;
         }
 
         public void ConOpen()
