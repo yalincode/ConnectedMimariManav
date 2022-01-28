@@ -12,7 +12,7 @@ namespace ConnectedMimariManav.Repository
 {
     public class KategoriRepo : BaseRepo, IRepository<Kategori>
     {
-        
+    
 
         public List<Kategori> GetAll()
         {

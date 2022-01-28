@@ -52,5 +52,15 @@ namespace ConnectedMimariManav
         {
             dataGridView1.DataSource=repo.GetAll();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

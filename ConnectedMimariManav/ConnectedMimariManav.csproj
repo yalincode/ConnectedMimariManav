@@ -158,5 +158,8 @@
   <ItemGroup>
     <None Include="Resources\close_window_48px.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\manav-acmak.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

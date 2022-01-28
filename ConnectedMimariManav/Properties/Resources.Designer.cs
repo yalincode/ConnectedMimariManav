@@ -83,6 +83,16 @@ namespace ConnectedMimariManav.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap manav_acmak {
+            get {
+                object obj = ResourceManager.GetObject("manav-acmak", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap opened_folder_48px {
             get {
                 object obj = ResourceManager.GetObject("opened_folder_48px", resourceCulture);

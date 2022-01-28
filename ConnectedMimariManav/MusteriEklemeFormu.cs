@@ -53,22 +53,35 @@ namespace ConnectedMimariManav
 
         private void FormSave()
         {
-            if (selectedMusteri==null)
+            try
             {
-                selectedMusteri = new Musteri();
+                if (txtMusteriAd.Text == "" || txtMusteriSoyad.Text == "" || txtMusteriTelefon.Text=="")
+                {
+                    MessageBox.Show("Lütfen alanları düzgün doldurun.");
+                    return;
+                }
+                if (selectedMusteri == null)
+                {
+                    selectedMusteri = new Musteri();
+                }
+                selectedMusteri.MusteriAd = txtMusteriAd.Text;
+                selectedMusteri.MusteriSoyad = txtMusteriSoyad.Text;
+                selectedMusteri.MusteriTelefon = txtMusteriTelefon.Text;
+                selectedMusteri.MusteriAdres = txtMusteriAdres.Text;
+                if (Convert.ToInt32(this.Tag) == 0)
+                {
+                    selectedMusteri.MusteriID = repo.Create(selectedMusteri);
+                    this.Tag = selectedMusteri.MusteriID;
+                }
+                else
+                {
+                    selectedMusteri.MusteriID = repo.Update(selectedMusteri);
+                }
             }
-            selectedMusteri.MusteriAd = txtMusteriAd.Text;
-            selectedMusteri.MusteriSoyad = txtMusteriSoyad.Text;
-            selectedMusteri.MusteriTelefon=txtMusteriTelefon.Text;
-            selectedMusteri.MusteriAdres = txtMusteriAdres.Text;
-            if (Convert.ToInt32(this.Tag) == 0)
+            catch (Exception ex)
             {
-                selectedMusteri.MusteriID = repo.Create(selectedMusteri);
-                this.Tag = selectedMusteri.MusteriID;
-            }
-            else
-            {
-                selectedMusteri.MusteriID=repo.Update(selectedMusteri);
+
+                MessageBox.Show(ex.Message);
             }
         }
 

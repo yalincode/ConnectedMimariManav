@@ -50,21 +50,34 @@ namespace ConnectedMimariManav
 
         private void FormSave()
         {
-            if (selectedKategori==null)
+            try
             {
-                selectedKategori=new Kategori();
-            }
-            selectedKategori.KategoriAd=txtKategoriAd.Text;
-            selectedKategori.KategoriDes=txtKategoriDes.Text;
+                if (txtKategoriAd.Text=="" || txtKategoriDes.Text=="")
+                {
+                    MessageBox.Show("Lütfen alanları düzgün doldurun.");
+                    return;
+                }
+                if (selectedKategori == null)
+                {
+                    selectedKategori = new Kategori();
+                }
+                selectedKategori.KategoriAd = txtKategoriAd.Text;
+                selectedKategori.KategoriDes = txtKategoriDes.Text;
 
-            if (Convert.ToInt32(this.Tag)==0)
-            {
-                selectedKategori.KategoriID = repo.Create(selectedKategori);
-                this.Tag = selectedKategori.KategoriID;
+                if (Convert.ToInt32(this.Tag) == 0)
+                {
+                    selectedKategori.KategoriID = repo.Create(selectedKategori);
+                    this.Tag = selectedKategori.KategoriID;
+                }
+                else
+                {
+                    selectedKategori.KategoriID = repo.Update(selectedKategori);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                selectedKategori.KategoriID = repo.Update(selectedKategori);
+
+                MessageBox.Show(ex.Message);
             }
         }
 

@@ -86,26 +86,39 @@ namespace ConnectedMimariManav
 
         private void FormSave()
         {
-            if (selectedUrun==null)
+            try
             {
-                selectedUrun = new Urun();
-            }
-            selectedUrun.UrunAd=txtUrunAdi.Text;
-            selectedUrun.KategoriID = Convert.ToInt32(cmbKategori.SelectedValue);
-            selectedUrun.MusteriID = Convert.ToInt32(cmbMusteri.SelectedValue);
-            selectedUrun.UnitPrice = nuUrunFiyat.Value;
-            selectedUrun.Stok=Convert.ToInt16(NuStok.Value);
-            selectedUrun.Siparis=Convert.ToInt16(nuSiparis.Value);
+                if (txtUrunAdi.Text == "" || nuUrunFiyat.Value==0  || Convert.ToInt16(NuStok.Value) == 0 || Convert.ToInt16(nuSiparis.Value) ==0)
+                {
+                    MessageBox.Show("Lütfen alanları düzgün doldurun.");
+                    return;
+                }
+                if (selectedUrun == null)
+                {
+                    selectedUrun = new Urun();
+                }
+                selectedUrun.UrunAd = txtUrunAdi.Text;
+                selectedUrun.KategoriID = Convert.ToInt32(cmbKategori.SelectedValue);
+                selectedUrun.MusteriID = Convert.ToInt32(cmbMusteri.SelectedValue);
+                selectedUrun.UnitPrice = nuUrunFiyat.Value;
+                selectedUrun.Stok = Convert.ToInt16(NuStok.Value);
+                selectedUrun.Siparis = Convert.ToInt16(nuSiparis.Value);
 
-            if (Convert.ToInt32(this.Tag)==0)
-            {
-                int UrunID = urunRepo.Create(selectedUrun);
-                selectedUrun.UrunID= UrunID;
-                this.Tag = UrunID;
+                if (Convert.ToInt32(this.Tag) == 0)
+                {
+                    int UrunID = urunRepo.Create(selectedUrun);
+                    selectedUrun.UrunID = UrunID;
+                    this.Tag = UrunID;
+                }
+                else
+                {
+                    selectedUrun.UrunID = urunRepo.Update(selectedUrun);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                selectedUrun.UrunID=urunRepo.Update(selectedUrun);
+
+                MessageBox.Show(ex.Message);
             }
         }
 
